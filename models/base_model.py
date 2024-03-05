@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module for BaseModel"""
 
+import models
 from uuid import uuid4
 from datetime import datetime
 
@@ -27,6 +28,9 @@ class BaseModel:
             created_at (datetime): Timestamp representing the creation time of the instance.
             updated_at (datetime): Timestamp representing the time of the last update of the instance.
         """
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         if len(kwargs) > 0:
             for key, valu in kwargs.items():
                 if key != "__class__":
@@ -34,9 +38,7 @@ class BaseModel:
                         valu = datetime.strptime(valu, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, key, valu)
         else:
-            self.id = str(uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """
@@ -50,6 +52,7 @@ class BaseModel:
         Updates the 'updated_at' attribute with the current timestamp.
         """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """

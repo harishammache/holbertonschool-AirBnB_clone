@@ -6,3 +6,4 @@ tests/test_models/__pycache__/__init__.cpython-310.pyc
 tests/test_models/__pycache__/test_base_model.cpython-310.pyc
 
 .gitignore
+test_base_model_dict.py

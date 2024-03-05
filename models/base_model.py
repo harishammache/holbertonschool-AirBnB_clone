@@ -6,14 +6,37 @@ from datetime import datetime
 
 
 class BaseModel:
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
-        Initializes a new instance of BaseModel class.
-        Sets unique ID, creation timestamp, and update timestamp.
+        Initialize a new instance of the BaseModel class.
+
+        If kwargs is not empty, set each key-value pair as an attribute of the instance,
+        except for '__class__' which should not be set as an attribute.
+        Specifically, convert 'created_at' and 'updated_at' from strings to datetime objects
+        if they are present in kwargs.
+
+        If kwargs is empty, generate a new unique ID and set both 'created_at' and
+        'updated_at' to the current datetime.
+
+        Parameters:
+            *args (tuple): Variable length argument list, not used in this function.
+            **kwargs (dict): Keyword arguments containing initial attribute names and values.
+
+        Attributes:
+            id (str): Unique identifier for the instance, generated using uuid4.
+            created_at (datetime): Timestamp representing the creation time of the instance.
+            updated_at (datetime): Timestamp representing the time of the last update of the instance.
         """
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if len(kwargs) > 0:
+            for key, valu in kwargs.items():
+                if key != "__class__":
+                    if key == "created_at" or key == "updated_at":
+                        valu = datetime.strptime(valu, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, valu)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """

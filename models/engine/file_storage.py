@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Module for class FileStorage"""
 
 from models.base_model import BaseModel
 import json
@@ -13,7 +14,7 @@ class FileStorage:
         __file_path (str): The path to the JSON file where objects are stored.
         __objects (dict): A dictionary of instantiated objects.
     """
-        
+
     __file_path = "file.json"
     __objects = {}
 
@@ -47,19 +48,22 @@ class FileStorage:
 
     def reload(self):
         """
-        Deserializes the JSON file to objects if the JSON file (__file_path) exists.
+        Deserializes the JSON file to objects if the JSON file
+        (__file_path) exists.
 
-        This method reads the JSON file, converts it back to a dictionary of objects,
-        and restores them into the __objects dictionary, effectively reloading the
+        This method reads the JSON file, converts it back to
+        a dictionary of objects,
+        and restores them into the __objects dictionary,
+        effectively reloading the
         stored objects into the application.
         """
         try:
             with open(FileStorage.__file_path, 'r') as f:
                 objdict = json.load(f)
                 for obj_data in objdict.values():
-                    cls_name = obj_data['__class__']
+                    cls_nam = obj_data['__class__']
                     del obj_data['__class__']
-                    cls = globals()[cls_name] if cls_name in globals() else None
+                    cls = globals()[cls_nam] if cls_nam in globals() else None
                     if cls:
                         self.new(cls(**obj_data))
         except FileNotFoundError:

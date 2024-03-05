@@ -1,4 +1,8 @@
-models/__pycache__/base_model.cpython-310.pyc
-__pycache__/datetime.cpython-310.pyc
 models/__pycache__/__init__.cpython-310.pyc
+models/__pycache__/base_model.cpython-310.pyc
 test_base_model.py
+__pycache__/datetime.cpython-310.pyc
+tests/test_models/__pycache__/__init__.cpython-310.pyc
+tests/test_models/__pycache__/test_base_model.cpython-310.pyc
+
+.gitignore

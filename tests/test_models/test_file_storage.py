@@ -9,6 +9,7 @@ import json
 
 
 class TestFileStorage(unittest.TestCase):
+    """Unittest for class FileStorage"""
 
     def setUp(self):
         """Set up method for FileStorage tests."""

@@ -1,9 +1,12 @@
 #!/usr/bin/python3
-"""Unittest for the task 3"""
+"""Unittest for basemodel and filestorage"""
 
 import unittest
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 from datetime import datetime
+import os
+import json
 
 
 class TestBaseModel(unittest.TestCase):

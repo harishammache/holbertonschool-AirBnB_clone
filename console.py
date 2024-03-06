@@ -24,8 +24,8 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Create an instance of the specified class, save it to the JSON file,
-        and print the id."""
+        """Create an instances of the specified class,
+        save it to the JSON file, and print the id."""
         if not arg:
             print("** class name missing **")
             return
@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """
         Prints the string representation of an
-        instance based on the class name and id.
+        instances based on the class name and id.
 
         Args:
             arg (str): The string containing the class name and
@@ -50,8 +50,8 @@ class HBNBCommand(cmd.Cmd):
 
         Prints an error message if the class name is missing,
         if the class doesn't exist,
-        if the instance ID is missing,
-        or if no instance is found with the given ID.
+        if the instances ID is missing,
+        or if no instances is found with the given ID.
         """
         list_arg = arg.split()
         obj = storage.all()
@@ -60,17 +60,17 @@ class HBNBCommand(cmd.Cmd):
         elif list_arg[0] not in globals():
             print("** class doesn't exist **")
         elif len(list_arg) < 2:
-            print("** instance id missing **")
+            print("** instances id missing **")
         else:
             class_name, instance_id = list_arg[0], list_arg[1]
             if "{}.{}".format(class_name, instance_id) not in obj:
-                print("** no instance found **")
+                print("** no instances found **")
             else:
                 print(obj["{}.{}".format(class_name, instance_id)])
 
     def do_destroy(self, arg):
         """
-        Deletes an instance based on the class name and id and
+        Deletes an instances based on the class name and id and
         saves the change into the JSON file.
 
         Args:
@@ -79,8 +79,8 @@ class HBNBCommand(cmd.Cmd):
 
         Prints an error message if the class name is missing,
         if the class doesn't exist,
-        if the instance ID is missing,
-        or if no instance is found with the given ID.
+        if the instances ID is missing,
+        or if no instances is found with the given ID.
         """
         list_arg = arg.split()
         obj = storage.all()
@@ -89,23 +89,60 @@ class HBNBCommand(cmd.Cmd):
         elif list_arg[0] not in globals():
             print("** class doesn't exist **")
         elif len(list_arg) < 2:
-            print("** instance id missing **")
+            print("** instances id missing **")
         else:
             class_name, instance_id = list_arg[0], list_arg[1]
             if "{}.{}".format(class_name, instance_id) not in obj:
-                print("** no instance found **")
+                print("** no instances found **")
             else:
                 del obj["{}.{}".format(class_name, instance_id)]
                 storage.save()
 
+    def do_all(self, arg):
+        """
+        Prints all string representations of instances stored,
+        optionally filtered by class name.
+
+        This command supports printing all stored instances,
+        or filtering them to only print instances
+        of a specific class. The output is formatted as a list of strings
+        where each string is the
+        string representation of an instance.
+
+        Args:
+            arg (str): A string containing the class name whose
+            instances are to be printed.
+            This argument is optional;
+            if omitted, instances of all classes will be printed.
+
+        Usage:
+            - To print all instances: `all`
+            - To print instances of a specific class: `all ClassName`
+
+        If a class name is provided and it doesn't exist,
+        an error message is printed.
+        """
+        obj = storage.all()
+        if arg:
+            args = arg.split()
+            if args[0] not in globals():
+                print("** class doesn't exist **")
+                return
+            else:
+                instances = [str(obj) for obj in obj.values() if
+                             type(obj).__name__ == args[0]]
+        else:
+            instances = [str(obj) for obj in obj.values()]
+        print(instances)
+
     def do_update(self, arg):
         """
-        Updates an instance's attribute based on the class name and id.
+        Updates an instances's attribute based on the class name and id.
         This update will also persist to the JSON file used for storage.
 
         Args:
             arg (str): A string that should include the class name,
-            instance id, attribute name,
+            instances id, attribute name,
             and the new value for the attribute, all separated by spaces.
 
         Usage:
@@ -114,8 +151,8 @@ class HBNBCommand(cmd.Cmd):
         This method will print an error message if:
         - The class name is missing.
         - The provided class name does not exist.
-        - The instance ID is missing.
-        - No instance with the given ID was found.
+        - The instances ID is missing.
+        - No instances with the given ID was found.
         - The attribute name is missing.
         - The value for the attribute is missing.
 
@@ -131,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
         elif list_arg[0] not in globals():
             print("** class doesn't exist **")
         elif len(list_arg) < 2:
-            print("** instance id missing **")
+            print("** instances id missing **")
         elif len(list_arg) < 3:
             print("** attribute name missing **")
         elif not len(list_arg) < 4:
@@ -143,7 +180,7 @@ class HBNBCommand(cmd.Cmd):
             attribute_value = str(list_arg[3])
             key = f"{class_name}.{instance_id}"
             if key not in obj:
-                print("** no instance found **")
+                print("** no instances found **")
             else:
                 setattr(obj[key], attribute_name, attribute_value)
                 storage.save()

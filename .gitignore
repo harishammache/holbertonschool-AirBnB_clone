@@ -11,3 +11,6 @@ file.json
 test_save_reload_base_model.py
 models/engine/__pycache__/__init__.cpython-310.pyc
 models/engine/__pycache__/file_storage.cpython-310.pyc
+tests/test_models/__pycache__/test_task3.cpython-310.pyc
+tests/test_models/__pycache__/test_file_storage.cpython-310.pyc
+tests/__pycache__/test_file_storage.cpython-310.pyc

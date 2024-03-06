@@ -7,3 +7,7 @@ tests/test_models/__pycache__/test_base_model.cpython-310.pyc
 
 .gitignore
 test_base_model_dict.py
+tests/test_models/__pycache__/test_task4.cpython-310.pyc
+tests/test_models/__pycache__/test_task3.cpython-310.pyc
+models/__pycache__/engine/__init__.py
+

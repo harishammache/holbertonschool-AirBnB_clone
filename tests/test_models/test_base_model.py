@@ -7,6 +7,8 @@ from datetime import datetime
 
 
 class TestBaseModel(unittest.TestCase):
+    """unittest for the class base model"""
+
     def test_init(self):
         """Test the initialization of BaseModel."""
         model = BaseModel()

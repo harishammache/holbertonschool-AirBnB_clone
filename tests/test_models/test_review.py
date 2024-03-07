@@ -14,7 +14,7 @@ class TestReview(unittest.TestCase):
         review = Review()
         self.assertEqual(review.place_id, "")
         self.assertEqual(review.user_id, "")
-        self.assertEqual(review.texte, "")
+        self.assertEqual(review.text, "")
 
     def test_inheritance(self):
         """Test if Review inherits from BaseModel."""

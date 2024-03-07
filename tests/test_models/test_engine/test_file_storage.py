@@ -50,7 +50,7 @@ class TestFileStorage(unittest.TestCase):
         self.storage.save()
         self.storage.reload()
         key = f"{self.model.__class__.__name__}.{self.model.id}"
-        self.assertIn(key, self.storage.all().keys())
+        self.assertIn(key, self.storage.all())
         with self.assertRaises(TypeError):
             self.storage.reload(None)
         

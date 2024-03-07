@@ -4,6 +4,8 @@
 import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.user import User
+from models.city import City
 import os
 import json
 
@@ -52,6 +54,30 @@ class TestFileStorage(unittest.TestCase):
                       "Reloaded object not found in __objects dictionary")
         with self.assertRaises(TypeError):
             self.storage.reload(None)
+        
+    def test_save_with_multiple_models(self):
+        """Test that save and reload works with different model types."""
+        user = User(email="user@example.com", password="password", first_name="John", last_name="Doe")
+        self.storage.new(user)
+        city = City(name="San Francisco")
+        self.storage.new(city)
+
+        self.storage.save()
+        self.storage.reload()
+
+        user_key = f"{User.__name__}.{user.id}"
+        city_key = f"{City.__name__}.{city.id}"
+
+        self.assertIn(user_key, self.storage.all())
+        self.assertIn(city_key, self.storage.all())
+
+        reloaded_user = self.storage.all()[user_key]
+        self.assertEqual(reloaded_user.email, user.email)
+        self.assertEqual(reloaded_user.first_name, user.first_name)
+        self.assertEqual(reloaded_user.last_name, user.last_name)
+
+        reloaded_city = self.storage.all()[city_key]
+        self.assertEqual(reloaded_city.name, city.name)
 
 
 if __name__ == '__main__':

@@ -68,11 +68,11 @@ class HBNBCommand(cmd.Cmd):
         elif list_arg[0] not in globals():
             print("** class doesn't exist **")
         elif len(list_arg) < 2:
-            print("** instances id missing **")
+            print("** instance id missing **")
         else:
             class_name, instance_id = list_arg[0], list_arg[1]
             if "{}.{}".format(class_name, instance_id) not in obj:
-                print("** no instances found **")
+                print("** no instance found **")
             else:
                 print(obj["{}.{}".format(class_name, instance_id)])
 
@@ -188,7 +188,7 @@ class HBNBCommand(cmd.Cmd):
             attribute_value = list_arg[3]
             key = f"{class_name}.{instance_id}"
             if key not in obj:
-                print("** no instances found **")
+                print("** no instance found **")
             else:
                 if attribute_name not in ['id', 'created_at', 'updated_at']:
                     if hasattr(obj[key], attribute_name):

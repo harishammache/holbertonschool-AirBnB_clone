@@ -189,6 +189,10 @@ class HBNBCommand(cmd.Cmd):
             if key not in obj:
                 print("** no instances found **")
             else:
+                if hasattr(obj[key], attribute_name):
+                    existing_type = type(getattr(obj[key], attribute_name))
+                    if existing_type in [int, float]:
+                        attribute_value = existing_type(attribute_value)
                 setattr(obj[key], attribute_name, attribute_value)
                 storage.save()
 

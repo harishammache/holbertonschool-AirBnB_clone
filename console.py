@@ -93,21 +93,22 @@ class HBNBCommand(cmd.Cmd):
         """
         list_arg = arg.split()
         obj = storage.all()
+
         if not list_arg:
             print("** class name missing **")
         elif list_arg[0] not in globals():
             print("** class doesn't exist **")
         elif len(list_arg) < 2:
             print("** instance id missing **")
-
-        class_name = list_arg[0]
-        instance_id = list_arg[1]
-        key = "{}.{}".format(class_name, instance_id)
-        if key not in storage.all():
-            print("** no instance found **")
-
-        del obj[key]
-        storage.save()
+        else:
+            class_name = list_arg[0]
+            instance_id = list_arg[1]
+            key = f"{class_name}.{instance_id}"
+            if key not in obj:
+                print("** no instance found **")
+            else:
+                del obj[key]
+                storage.save()
 
     def do_all(self, arg):
         """

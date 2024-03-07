@@ -2,6 +2,7 @@
 """Module for HBNBCommand(cmd.Cmd)"""
 
 import cmd
+import shlex
 from models import storage
 from models.base_model import BaseModel
 from models.city import City
@@ -96,11 +97,11 @@ class HBNBCommand(cmd.Cmd):
         elif list_arg[0] not in globals():
             print("** class doesn't exist **")
         elif len(list_arg) < 2:
-            print("** instances id missing **")
+            print("** instance id missing **")
         else:
             class_name, instance_id = list_arg[0], list_arg[1]
             if "{}.{}".format(class_name, instance_id) not in obj:
-                print("** no instances found **")
+                print("** no instance found **")
             else:
                 del obj["{}.{}".format(class_name, instance_id)]
                 storage.save()
@@ -168,7 +169,7 @@ class HBNBCommand(cmd.Cmd):
         - Only string, integer, and float attribute types are
         supported for update.
         """
-        list_arg = arg.split()
+        list_arg = shlex.split(arg)
         obj = storage.all()
         if not list_arg:
             print("** class name missing **")
@@ -184,15 +185,16 @@ class HBNBCommand(cmd.Cmd):
             class_name = list_arg[0]
             instance_id = list_arg[1]
             attribute_name = list_arg[2]
-            attribute_value = str(list_arg[3])
+            attribute_value = list_arg[3]
             key = f"{class_name}.{instance_id}"
             if key not in obj:
                 print("** no instances found **")
             else:
-                if hasattr(obj[key], attribute_name):
-                    existing_type = type(getattr(obj[key], attribute_name))
-                    if existing_type in [int, float]:
-                        attribute_value = existing_type(attribute_value)
+                if attribute_name not in ['id', 'created_at', 'updated_at']:
+                    if hasattr(obj[key], attribute_name):
+                        existing_type = type(getattr(obj[key], attribute_name))
+                        if existing_type in [int, float, str]:
+                            attribute_value = existing_type(attribute_value)
                 setattr(obj[key], attribute_name, attribute_value)
                 storage.save()
 

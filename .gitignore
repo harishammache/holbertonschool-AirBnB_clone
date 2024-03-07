@@ -13,3 +13,5 @@ models/engine/__pycache__/file_storage.cpython-310.pyc
 tests/test_models/__pycache__/test_task3.cpython-310.pyc
 tests/test_models/test_task3.py
 tests/test_models/__pycache__/test_task4.cpython-310.pyc
+models/__pycache__/user.cpython-310.pyc
+.gitignore

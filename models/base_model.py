@@ -11,22 +11,31 @@ class BaseModel:
         """
         Initialize a new instance of the BaseModel class.
 
-        If kwargs is not empty, set each key-value pair as an attribute of the instance,
-        except for '__class__' which should not be set as an attribute.
-        Specifically, convert 'created_at' and 'updated_at' from strings to datetime objects
+        If kwargs is not empty, set each key-value pair
+            as an attribute of the instance,
+        except for '__class__' which should
+            not be set as an attribute.
+        Specifically, convert 'created_at' and 'updated_at'
+            from strings to datetime objects
         if they are present in kwargs.
 
-        If kwargs is empty, generate a new unique ID and set both 'created_at' and
+        If kwargs is empty, generate a new unique ID
+            and set both 'created_at' and
         'updated_at' to the current datetime.
 
         Parameters:
-            *args (tuple): Variable length argument list, not used in this function.
-            **kwargs (dict): Keyword arguments containing initial attribute names and values.
+            *args (tuple): Variable length argument list,
+                not used in this function.
+            **kwargs (dict): Keyword arguments containing initial
+                attribute names and values.
 
         Attributes:
-            id (str): Unique identifier for the instance, generated using uuid4.
-            created_at (datetime): Timestamp representing the creation time of the instance.
-            updated_at (datetime): Timestamp representing the time of the last update of the instance.
+            id (str): Unique identifier for the instance,
+                generated using uuid4.
+            created_at (datetime): Timestamp representing
+                the creation time of the instance.
+            updated_at (datetime): Timestamp representing the time
+                of the last update of the instance.
         """
         self.id = str(uuid4())
         self.created_at = datetime.now()

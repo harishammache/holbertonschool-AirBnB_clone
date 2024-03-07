@@ -176,7 +176,7 @@ class HBNBCommand(cmd.Cmd):
         elif list_arg[0] not in globals():
             print("** class doesn't exist **")
         elif len(list_arg) < 2:
-            print("** instances id missing **")
+            print("** instance id missing **")
         else:
             class_name = list_arg[0]
             instance_id = list_arg[1]

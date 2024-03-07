@@ -48,7 +48,8 @@ class TestFileStorage(unittest.TestCase):
         self.storage.save()
         self.storage.reload()
         key = f"{self.model.__class__.__name__}.{self.model.id}"
-        self.assertIn(key, self.storage.all())
+        self.assertIn(key, self.storage.all(),
+                      "Reloaded object not found in __objects dictionary")
 
 
 if __name__ == '__main__':

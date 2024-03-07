@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""models/place.py"""
+"""Module for Place class"""
 
 from models.base_model import BaseModel
 
@@ -11,10 +11,10 @@ class Place(BaseModel):
     user_id = ""
     name = ""
     description = ""
-    nombre_chambres = 0
-    nombre_salles_de_bain = 0
-    max_invités = 0
-    prix_par_nuit = 0
+    number_rooms = 0
+    number_bathrooms = 0
+    max_guest = 0
+    price_by_night = 0
     latitude = 0.0
     longitude = 0.0
     amenity_ids = []

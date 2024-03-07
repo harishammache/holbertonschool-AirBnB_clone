@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module for class FileStorage"""
 
+from models.user import User
 from models.base_model import BaseModel
 import json
 

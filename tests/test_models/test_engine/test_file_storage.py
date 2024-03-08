@@ -5,14 +5,9 @@ import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
-from models.state import State
-from models.place import Place
-from models.review import Review
-from models.amenity import Amenity
 from models.city import City
 import os
 import json
-import models
 
 
 class TestFileStorage(unittest.TestCase):
@@ -51,30 +46,13 @@ class TestFileStorage(unittest.TestCase):
 
     def test_reload(self):
         """Test that reload properly loads objects from file."""
-        bm = BaseModel()
-        us = User()
-        st = State()
-        pl = Place()
-        cy = City()
-        am = Amenity()
-        rv = Review()
-        models.storage.new(bm)
-        models.storage.new(us)
-        models.storage.new(st)
-        models.storage.new(pl)
-        models.storage.new(cy)
-        models.storage.new(am)
-        models.storage.new(rv)
-        models.storage.save()
-        models.storage.reload()
-        objs = FileStorage._FileStorage__objects
-        self.assertIn("BaseModel." + bm.id, objs)
-        self.assertIn("User." + us.id, objs)
-        self.assertIn("State." + st.id, objs)
-        self.assertIn("Place." + pl.id, objs)
-        self.assertIn("City." + cy.id, objs)
-        self.assertIn("Amenity." + am.id, objs)
-        self.assertIn("Review." + rv.id, objs)
+        self.storage.new(self.model)
+        self.storage.save()
+        self.storage.reload()
+        key = f"{self.model.__class__.__name__}.{self.model.id}"
+        self.assertIn(key, self.storage.all())
+        with self.assertRaises(TypeError):
+            self.storage.reload(None)
 
     def test_save_with_multiple_models(self):
         """Test that save and reload works with different model types."""

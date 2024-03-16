@@ -1,13 +1,20 @@
+/* styles/3-header.css */
 header {
-	background-color: white;
-	height: 70px;
-	width: 100%;
-	border-bottom: 1px solid #CCCCCC;
-	background-image: url(../images/logo.png);
-	background-repeat: no-repeat;
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+    display: flex;
+    align-items: center;
+    padding-left: 20px; /* Logo space */
 }
 
-.logo {
-	vertical-align: center;
-	padding-left: 20px;
+/* Assuming there's a logo in the header */
+header .logo {
+    background-image: url('../images/logo.png');
+    width: 150px; /* Adjust based on actual logo size */
+    height: 150px; /* Adjust based on actual logo size */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }

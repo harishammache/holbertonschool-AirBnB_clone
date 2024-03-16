@@ -1,7 +1,9 @@
-.contenair {
-	max-width: 1000px;
-	margin-top: 30px;
-	margin: 30px auto;
+body {
+    margin: 0;
+    padding: 0;
 }
 
-
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+}

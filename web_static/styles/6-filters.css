@@ -1,63 +1,12 @@
-/* styles/6-filters.css */
 .filters {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: white;
     height: 70px;
     width: 100%;
-    padding: 0 15px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    border: 1px solid #DDDDDD;
-}
-
-.filter {
-    position: relative;
-    width: 25%;
-    height: 100%;
-}
-
-.filter h3 {
-    font-weight: 600;
-    margin: 0;
-}
-
-.filter h4 {
-    font-weight: 400;
-    font-size: 14px;
-    margin: 0;
-}
-
-.locations .popover,
-.amenities .popover {
-    display: none;
-    position: absolute;
-    background-color: #FAFAFA;
-    color: #484848;
-    width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
-    box-sizing: border-box;
-    z-index: 10;
-}
-
-.filter:hover .popover {
-    display: block;
-}
-
-.popover h2 {
-    font-size: 16px;
-}
-
-.popover ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.popover li {
-    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
 }
 
 button {
@@ -65,8 +14,11 @@ button {
     background-color: #FF5A5F;
     color: #FFFFFF;
     height: 48px;
+    width: 20%;
     border: none;
     border-radius: 4px;
+    margin-left: auto;
+    margin-right: 30px;
     cursor: pointer;
     transition: opacity 0.3s;
 }
@@ -74,3 +26,65 @@ button {
 button:hover {
     opacity: 0.9;
 }
+
+.locations, .amenities {
+	height: 100%;
+	width: 25%;
+	display: inline-block;
+}
+
+.locations {
+	border-right: 1px solid #DDDDDD;
+}
+
+.filters h3, .filters h4 {
+	margin: 6px;
+}
+
+.filters h3 {
+	font-weight: 600;
+}
+
+.filters h4 {
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.amenities h3 {
+	margin: 10px 0px 0px 30px;
+}
+
+.amenities h4 {
+	margin-left: 30px;
+}
+
+.locations h3{
+	margin: 10px 0px 0px 30px;
+}
+
+.locations h4 {
+	margin-left: 30px;
+}
+
+.popover h2{
+	color: black;
+	font-size: 16px;
+}
+
+.popover li {
+	color: black;
+	list-style: none;
+}
+
+.popover {
+    display: none;
+    color: white;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+
+.locations:hover .popover,
+.amenities:hover .popover {
+    display: block;
+}
+
